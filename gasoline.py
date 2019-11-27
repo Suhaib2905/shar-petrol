@@ -7,8 +7,8 @@ class Gasoline(models.Model):
     shift = [('morning', 'Morning Shift'), ('night', 'Night Shift')]
     state_ = [('draft', 'Draft'), ('done', 'Done')]
 
-    # @api.one
-    # @api.depends('gasoline_lines_ids.cash', 'gasoline_lines_ids.credit')
+ @api.one
+     @api.depends('gasoline_lines_ids.cash', 'gasoline_lines_ids.credit')
     def _compute_total(self):
      self.total_cash = sum(line.cash for line in self.gasoline_lines_ids)
      self.total_credit = sum(line.credit for line in self.gasoline_lines_ids)
